@@ -37,11 +37,9 @@ public class login {
     public void click_login_and_check_message() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id=\"loginSubmit\"]")).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-       WebElement txt = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div[2]/div[2]/div[1]/div[1]")));
-       String name= txt.getText();
-        System.out.println(name);
-
-
+        WebElement txt = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div[2]/div[2]/div[1]/div[1]/p/p")));
+        String name= txt.getText();
+        Assert.assertEquals(name,"Rajkumar");
     }
 
     @When("enter valid username and without password")

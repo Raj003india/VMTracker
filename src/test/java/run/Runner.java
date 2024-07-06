@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"C:\\Users\\USER\\IdeaProjects\\VMtracker\\src\\test\\java\\features\\loginVM.feature"},
+        features = {"C:\\Users\\USER\\IdeaProjects\\VMtracker\\src\\test\\java\\features\\VMoptions.feature"},
         plugin = {"pretty","html:target/cucumber-reports"}, glue ="stepdefinition",
         monochrome = true,
-        tags="login"
+        tags="@Dashboard"
 )
 public class Runner {
 
