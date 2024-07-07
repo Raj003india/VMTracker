@@ -3,15 +3,17 @@ package stepdefinition;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import method.method;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -51,8 +53,8 @@ public class VMoptions {
     }
 
 
-    @When("click see more and inputs Engine {} and signal status and group filter")
-    public void give_inputs(String opt) {
+    @When("click see more and inputs Engine {} and signal status {} and group filter")
+    public void give_inputs(String opt, String opt1) {
         driver.findElement(By.xpath("/html/body/div/div[2]/div[2]/div[4]/div/div[2]/div[1]/div[1]/p[2]")).click();
         String clr = driver.findElement(By.xpath("//*[@id=\"root\"]/div[4]/div[1]/div/div[2]/a[2]")).getCssValue("color");
         String expectclr = "rgba(0, 0, 238, 1)";
@@ -67,13 +69,28 @@ public class VMoptions {
             }
 
         }
+        driver.findElement(By.xpath("//*[@id=\"signalStatusDropdown\"]/img")).click();
+        List<WebElement> Choice = driver.findElements(By.xpath("//*[@id=\"root\"]/div[4]/div[2]/div[4]/div/div[1]/div/div[2]/div[2]/div[2]/p"));
+        for (WebElement ele1 : Choice) {
+            if (ele1.getText().equals(opt1)) {
+                ele1.click();
+                break;
+            }
+        }
+
     }
 
-        @Then("adjective map and take screenshot")
-        public void ADJUST_map_and_take_screenprint () {
-            System.out.println("tanks");
+    @Then("adjective map and take screenshot")
+    public void ADJUST_map_and_take_screenprint() throws IOException, InterruptedException {
+        for (int i = 0; i < 18;i++)
+        {
+            driver.findElement(By.xpath("//*[@id=\"root\"]/div[4]/div[2]/div[4]/div/div[2]/div[2]/div/div[2]/div[1]/div/a[2]")).click();
 
         }
-    }
+        Thread.sleep(5000);
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file , new File("C:\\Users\\USER\\IdeaProjects\\VMtracker\\src\\test\\screen\\img.png"));
 
+    }
+}
 

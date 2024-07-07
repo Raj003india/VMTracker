@@ -1,6 +1,6 @@
 Feature: VMTracker Dashboards options
 
-  #@Dashboard
+  @Dashboard
   Scenario: List of Options in VMTracks
     Given login
     When get all  8 options in webpage
@@ -17,7 +17,7 @@ Feature: VMTracker Dashboards options
   @Dashboard
   Scenario: validate Live tracking options
     Given login
-    When click see more and inputs Engine On and signal status and group filter
+    When click see more and inputs Engine On and signal status Online and group filter
     Then adjective map and take screenshot
 
 
